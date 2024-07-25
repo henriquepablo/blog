@@ -28,6 +28,16 @@ public class AdminUser implements UserDetails{
 	
 	private UserRole role;
 	
+	public AdminUser() {
+		
+	}
+	
+	public AdminUser(String email, String password, UserRole role) {
+		this.email = email;
+		this.password = password;
+		this.role = role;
+	}
+
 	public Integer getId() {
 		return id;
 	}
