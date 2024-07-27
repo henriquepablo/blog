@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lacerda.blog.DTO.AuthenticationDTO;
+import com.lacerda.blog.DTO.RegisterDTO;
+import com.lacerda.blog.DTO.ResponseAuthDTO;
 import com.lacerda.blog.infra.security.TokenService;
 import com.lacerda.blog.model.AdminUser;
-import com.lacerda.blog.model.AuthenticationDTO;
-import com.lacerda.blog.model.RegisterDTO;
-import com.lacerda.blog.model.ResponseAuthDTO;
 import com.lacerda.blog.repositories.AdminUserRepository;
 
 @RestController
