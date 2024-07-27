@@ -1,5 +1,5 @@
 package com.lacerda.blog.model;
 
-public record ResponseAuthDTO (String token) {
+public record ResponseAuthDTO (String token, Integer id) {
 
 }

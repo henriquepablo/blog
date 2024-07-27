@@ -39,7 +39,9 @@ public class AuthenticationController {
 		
 		var token = tokenService.generateToken((AdminUser) auth.getPrincipal());
 		
-		return ResponseEntity.ok(new ResponseAuthDTO(token));
+		AdminUser userAdmin = (AdminUser) adminUserRepository.findByEmail(data.email());
+
+		return ResponseEntity.ok(new ResponseAuthDTO(token, userAdmin.getId()));
 	}
 	
 	@PostMapping("/createNewUserAdmin")
