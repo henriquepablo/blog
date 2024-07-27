@@ -12,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "AdminUsers")
 public class AdminUser implements UserDetails{
@@ -27,6 +28,9 @@ public class AdminUser implements UserDetails{
 	private String password;
 	
 	private UserRole role;
+	
+	@OneToMany(mappedBy = "adminUser")
+	private List<Post> posts;
 	
 	public AdminUser() {
 		
@@ -69,6 +73,16 @@ public class AdminUser implements UserDetails{
 	public void setRole(UserRole role) {
 		this.role = role;
 	}
+	
+	
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
 
 	@Override
 	public int hashCode() {
@@ -88,9 +102,11 @@ public class AdminUser implements UserDetails{
 				&& Objects.equals(password, other.password) && Objects.equals(role, other.role);
 	}
 	
+	
 	@Override
 	public String toString() {
-		return "AdminUser [id=" + id + ", email=" + email + ", password=" + password + ", role=" + role + "]";
+		return "AdminUser [id=" + id + ", email=" + email + ", password=" + password + ", role=" + role + ", posts="
+				+ posts + "]";
 	}
 
 	@Override
