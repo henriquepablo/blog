@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lacerda.blog.DTO.ResponseCreatePostDTO;
+import com.lacerda.blog.DTO.ResponsePostDTO;
 import com.lacerda.blog.DTO.ResponseListPostsDTO;
 import com.lacerda.blog.model.Post;
 import com.lacerda.blog.service.PostService;
@@ -28,8 +30,13 @@ public class PostController {
 	}
 	
 	@PostMapping("/createPost")
-	public ResponseEntity<ResponseCreatePostDTO> createPost(@RequestBody Post post) {
+	public ResponseEntity<ResponsePostDTO> createPost(@RequestBody Post post) {
 		
-		return ResponseEntity.ok(new ResponseCreatePostDTO(postService.createPost(post)));
+		return ResponseEntity.ok(new ResponsePostDTO(postService.createPost(post)));
+	}
+	
+	@PutMapping("/editPost/{id}")
+	public ResponseEntity<ResponsePostDTO> editPost(@PathVariable Integer id, @RequestBody Post post) {
+		return ResponseEntity.ok(new ResponsePostDTO(postService.editPost(post, id)));
 	}
 }
