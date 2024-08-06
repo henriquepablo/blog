@@ -33,4 +33,11 @@ public class PostService {
 		return postRepository.save(entity);
 		
 	}
+	
+	public void deletePost(Integer id) {
+		
+		Post entity = postRepository.findById(id).orElseThrow(() -> new RuntimeException("post not found"));
+		
+		postRepository.delete(entity);
+	}
 }

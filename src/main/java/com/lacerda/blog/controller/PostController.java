@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,5 +39,12 @@ public class PostController {
 	@PutMapping("/editPost/{id}")
 	public ResponseEntity<ResponsePostDTO> editPost(@PathVariable Integer id, @RequestBody Post post) {
 		return ResponseEntity.ok(new ResponsePostDTO(postService.editPost(post, id)));
+	}
+	
+	@DeleteMapping("/deletePost/{id}")
+	public ResponseEntity deletePost(@PathVariable Integer id) {
+		postService.deletePost(id);
+		
+		return ResponseEntity.ok().build();
 	}
 }
